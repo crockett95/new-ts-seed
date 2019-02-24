@@ -33,14 +33,13 @@ gulp.task('tslint:src', () => lint('./src/scripts/**/*.ts'));
 
 gulp.task('tslint:test', () => lint('./test/**/*.ts'));
 
-gulp.task('typedoc', () => gulp.src(['./src/**/*.ts'])
+gulp.task('typedoc', () => gulp.src(['./src/scripts/**/*.ts'])
     .pipe($.typedoc({
-      module: 'umd',
+      mode: 'modules',
       target: 'es2015',
-      entryPoint: JSON.stringify('main'),
       out: './docs/scripts',
       name: packageJson.description,
-      excludeExternals: false,
+      excludeExternals: true,
       ignoreCompilerErrors: true
     })));
 

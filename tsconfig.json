@@ -12,7 +12,8 @@
         "noEmit": true,
         "strict": true,
         "isolatedModules": true,
-        "esModuleInterop": true
+        "esModuleInterop": true,
+        "rootDir": "src/scripts"
     },
     "include": [
         "src/**/*",
