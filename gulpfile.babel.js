@@ -1,10 +1,10 @@
-import gulp from 'gulp';
-import path from 'path';
-import gulpLoadPlugins from 'gulp-load-plugins';
-import * as tslint from 'tslint';
-import * as packageJson from './package.json';
-import { Server as KarmaServer } from 'karma';
 import dtsGenerator from 'dts-generator';
+import gulp from 'gulp';
+import gulpLoadPlugins from 'gulp-load-plugins';
+import { Server as KarmaServer } from 'karma';
+import * as packageJson from './package.json';
+import path from 'path';
+import * as tslint from 'tslint';
 
 const $ = gulpLoadPlugins();
 
