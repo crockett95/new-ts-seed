@@ -4,6 +4,7 @@ import gulpLoadPlugins from 'gulp-load-plugins';
 import * as tslint from 'tslint';
 import * as packageJson from './package.json';
 import { Server as KarmaServer } from 'karma';
+import dtsGenerator from 'dts-generator';
 
 const $ = gulpLoadPlugins();
 
@@ -36,15 +37,21 @@ gulp.task('typedoc', () => gulp.src(['./src/**/*.ts'])
     .pipe($.typedoc({
       module: 'umd',
       target: 'es2015',
-      entryPoint: './main',
+      entryPoint: JSON.stringify('main'),
       out: './docs/scripts',
       name: packageJson.description,
-      excludeExternals: true,
+      excludeExternals: false,
       ignoreCompilerErrors: true
     })));
 
 gulp.task('test:unit', (done) => runKarma(true, done));
 
-gulp.task('dts', () => gulp.src(['./src/**/*.ts'])
-  .pipe($.typescript.createProject('./tsconfig.json')())
-  .dts.pipe(gulp.dest('./dist')));
+gulp.task('dts-generator', () => dtsGenerator({
+      name: 'seed3',
+      baseDir: './src/scripts',
+      files: ['main.ts'],
+      main: 'seed3/main',
+      out: 'dist/seed3.d.ts',
+      prefix: "seed3",
+      moduleResolution: 2
+  }));

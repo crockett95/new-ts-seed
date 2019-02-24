@@ -1,5 +1,4 @@
 module.exports = function (api) {
-  debugger;
   var presets = [
     ["@babel/env",
       {

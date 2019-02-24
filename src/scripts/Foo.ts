@@ -9,13 +9,30 @@ export default class Foo {
    *
    * @private
    */
-  private _promise: Promise<void> = Promise.resolve();
+  private _promise: Promise<number>;
+
+  /**
+   * Foo constructor
+   * @param promiseVal {number} The resolution of the promise
+   */
+  constructor(promiseVal: number) {
+    this._promise = Promise.resolve(promiseVal);
+  }
 
   /**
    * The public promis
    * @return {Promise<void>} It's a promise!
    */
-  public get promise(): Promise<void> {
+  public get promise(): Promise<number> {
     return this._promise;
+  }
+
+  /**
+   * A test async method
+   *
+   * @return {Promise<number>}
+   */
+  public async getLatest(): Promise<number> {
+    return await this.promise;
   }
 }
